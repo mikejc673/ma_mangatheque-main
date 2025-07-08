@@ -1,7 +1,7 @@
 <?php
 // Pour inclure le contenu de edit.php dans layout.php
-$viewPath = __DIR__ . '/edit_content.php';
-ob_start(); // Commence la capture de sortie
+
+
 ?>
 
 <h2>Modifier le Manga : <?= htmlspecialchars($manga['titre']) ?></h2>
@@ -34,8 +34,3 @@ ob_start(); // Commence la capture de sortie
 </form>
 
 <p><a href="<?= BASE_URL ?>mangas/show/<?= htmlspecialchars($manga['id']) ?>">Annuler</a> | <a href="<?= BASE_URL ?>mangas">Retour à la liste</a></p>
-
-<?php
-$viewContent = ob_get_clean(); // Récupère le contenu et vide le tampon
-include __DIR__ . '/../layout.php'; // Inclut le layout avec le contenu
-?>

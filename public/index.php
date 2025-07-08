@@ -8,13 +8,6 @@ session_start(); // Ajoutez cette ligne au tout début
 // 1. Charger les fichiers de configuration
 require_once __DIR__ . '/../app/Config/config.php';
 
-// ... (le reste de votre fichier index.php)
-// Fichier d'entrée unique de l'application
-// C'est ici que toutes les requêtes seront traitées.
-
-// 1. Charger les fichiers de configuration
-require_once __DIR__ . '/../app/Config/config.php';
-
 // 2. Charger les autoloads des classes (on va le faire manuellement pour l'instant, puis on utilisera Composer)
 require_once __DIR__ . '/../app/Config/Models/Database.php';
 require_once __DIR__ . '/../app/Config/Models/Manga.php';
@@ -34,7 +27,7 @@ if (isset($segments[0]) && strtolower($segments[0]) === 'index.php') {
     array_shift($segments);
 }
 
-$controllerName = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'MangaController'; // Par défaut, MangaController
+$controllerName = 'MangaController'; // Par défaut, MangaController
 $actionName = !empty($segments[1]) ? $segments[1] : 'index'; // Par défaut, l'action index
 
 $id = null;

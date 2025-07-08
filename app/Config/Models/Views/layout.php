@@ -18,7 +18,7 @@
     </header>
 
     <main>
-        <?php include $viewPath; // Variable qui sera définie dans les contrôleurs pour inclure la vue spécifique ?>
+        <?= isset($viewContent) ? $viewContent : '' ?>
         <div id="message"></div>
         <script>
             // Exemple de message dynamique
