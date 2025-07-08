@@ -29,8 +29,7 @@ class MangaController {
                 'description' => $this->mangaModel->description,
                 'nb_volumes' => $this->mangaModel->nb_volumes,
                 'statut' => $this->mangaModel->statut,
-                'image_couverture' => $this->mangaModel->image_couverture,
-                'note_personnelle' => $this->mangaModel->note_personnelle
+                'auteurs' => $this->mangaModel->auteurs,
             ];
             $viewPath = __DIR__ . '/../Views/mangas/show.php';
             ob_start();
@@ -62,8 +61,16 @@ class MangaController {
             $this->mangaModel->description = $_POST['description'] ?? '';
             $this->mangaModel->nb_volumes = $_POST['nb_volumes'] ?? 0;
             $this->mangaModel->statut = $_POST['statut'] ?? 'En cours';
-            $this->mangaModel->image_couverture = $_POST['image_couverture'] ?? '';
-            $this->mangaModel->note_personnelle = $_POST['note_personnelle'] ?? null;
+            $this->mangaModel->auteurs = $_POST['auteur'] ?? '';
+
+            // Validation des champs pour respecter la contrainte SQL
+            $statuts_valides = ['En cours', 'Terminé', 'Abandonné', 'Pause'];
+            if (!in_array($this->mangaModel->statut, $statuts_valides)) {
+                $_SESSION['error_message'] = "Statut invalide.";
+                header('Location: ' . BASE_URL . 'mangas/create');
+                exit();
+            }
+           
 
             // Tenter de créer le manga
             if ($this->mangaModel->create()) {
@@ -91,11 +98,11 @@ class MangaController {
             $manga = [
                 'id' => $this->mangaModel->id,
                 'titre' => $this->mangaModel->titre,
+                'auteurs' => $this->mangaModel->auteurs,
                 'description' => $this->mangaModel->description,
                 'nb_volumes' => $this->mangaModel->nb_volumes,
                 'statut' => $this->mangaModel->statut,
-                'image_couverture' => $this->mangaModel->image_couverture,
-                'note_personnelle' => $this->mangaModel->note_personnelle
+                
             ];
             $viewPath = __DIR__ . '/../Views/mangas/edit.php';
             ob_start();
@@ -115,11 +122,20 @@ class MangaController {
             // Assigner l'ID et les nouvelles valeurs du formulaire aux propriétés de l'objet Manga
             $this->mangaModel->id = $id;
             $this->mangaModel->titre = $_POST['titre'] ?? '';
+            $this->mangaModel->auteurs = $_POST['auteurs'] ?? '';
             $this->mangaModel->description = $_POST['description'] ?? '';
             $this->mangaModel->nb_volumes = $_POST['nb_volumes'] ?? 0;
             $this->mangaModel->statut = $_POST['statut'] ?? 'En cours';
-            $this->mangaModel->image_couverture = $_POST['image_couverture'] ?? '';
-            $this->mangaModel->note_personnelle = $_POST['note_personnelle'] ?? null;
+           
+
+            // Validation des champs pour respecter la contrainte SQL
+            $statuts_valides = ['En cours', 'Terminé', 'Abandonné', 'Pause'];
+            if (!in_array($this->mangaModel->statut, $statuts_valides)) {
+                $_SESSION['error_message'] = "Statut invalide.";
+                header('Location: ' . BASE_URL . 'mangas/edit/' . $id);
+                exit();
+            }
+            
 
             // Tenter de mettre à jour le manga
             if ($this->mangaModel->update()) {

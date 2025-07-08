@@ -1,7 +1,7 @@
 <?php 
 // Pour inclure le contenu de create.php dans layout.php
 $viewPath = __DIR__ . '/create.php'; 
-ob_start(); // Commence la capture de sortie
+ // Commence la capture de sortie
 ?>
 
 <h2>Ajouter un nouveau Manga</h2>
@@ -24,11 +24,8 @@ ob_start(); // Commence la capture de sortie
         <option value="Pause">En Pause</option>
     </select><br><br>
 
-    <label for="image_couverture">URL de l'image de couverture :</label><br>
-    <input type="text" id="image_couverture" name="image_couverture"><br><br>
-
-    <label for="note_personnelle">Note personnelle (1-10) :</label><br>
-    <input type="number" id="note_personnelle" name="note_personnelle" min="1" max="10"><br><br>
+    <label for="auteur">Auteur :</label><br>
+    <input type="text" id="auteur" name="auteur" required><br><br>
 
     <button type="submit">Ajouter le Manga</button>
 </form>
@@ -36,6 +33,6 @@ ob_start(); // Commence la capture de sortie
 <p><a href="<?= BASE_URL ?>mangas">Retour à la liste des Mangas</a></p>
 
 <?php 
-$viewContent = ob_get_clean(); // Récupère le contenu et vide le tampon
+// Récupère le contenu et vide le tampon
 include __DIR__ . '/../layout.php'; // Inclut le layout avec le contenu
 ?>

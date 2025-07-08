@@ -9,8 +9,8 @@ class Manga {
     public $description;
     public $nb_volumes;
     public $statut;
-    public $image_couverture;
-    public $note_personnelle;
+
+    public $auteurs;
 
     public function __construct() {
         $database = Database::getInstance();
@@ -19,7 +19,7 @@ class Manga {
 
     // Lire tous les mangas
     public function getAll() {
-        $query = "SELECT id, titre, description, nb_volumes, statut, image_couverture, note_personnelle FROM " . $this->table_name . " ORDER BY titre ASC";
+        $query = "SELECT id, titre, description, nb_volumes, auteurs FROM " . $this->table_name . " ORDER BY titre ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
@@ -27,7 +27,7 @@ class Manga {
 
     // Lire un seul manga par ID
     public function getById($id) {
-        $query = "SELECT id, titre, description, nb_volumes, statut, image_couverture, note_personnelle FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
+        $query = "SELECT id, titre, description, nb_volumes, statut, auteurs FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->execute();
@@ -39,8 +39,7 @@ class Manga {
             $this->description = $row['description'];
             $this->nb_volumes = $row['nb_volumes'];
             $this->statut = $row['statut'];
-            $this->image_couverture = $row['image_couverture'];
-            $this->note_personnelle = $row['note_personnelle'];
+            $this->auteurs = $row['auteurs'];
             return true;
         }
         return false;
@@ -55,8 +54,7 @@ class Manga {
                     description = :description,
                     nb_volumes = :nb_volumes,
                     statut = :statut,
-                    image_couverture = :image_couverture,
-                    note_personnelle = :note_personnelle";
+                    auteurs = :auteurs";
 
         // Préparation de la requête
         $stmt = $this->conn->prepare($query);
@@ -64,18 +62,17 @@ class Manga {
         // Nettoyage des données (sécurité contre les injections HTML/JS)
         $this->titre = htmlspecialchars(strip_tags($this->titre));
         $this->description = htmlspecialchars(strip_tags($this->description));
+        $this->auteurs = htmlspecialchars(strip_tags($this->auteurs));
         $this->nb_volumes = htmlspecialchars(strip_tags($this->nb_volumes));
         $this->statut = htmlspecialchars(strip_tags($this->statut));
-        $this->image_couverture = htmlspecialchars(strip_tags($this->image_couverture));
-        $this->note_personnelle = htmlspecialchars(strip_tags($this->note_personnelle));
+
 
         // Liaison des valeurs
         $stmt->bindParam(':titre', $this->titre);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':nb_volumes', $this->nb_volumes);
         $stmt->bindParam(':statut', $this->statut);
-        $stmt->bindParam(':image_couverture', $this->image_couverture);
-        $stmt->bindParam(':note_personnelle', $this->note_personnelle);
+        $stmt->bindParam(':auteurs', $this->auteurs);
 
         // Exécution de la requête
         if ($stmt->execute()) {
@@ -93,8 +90,7 @@ class Manga {
                     description = :description,
                     nb_volumes = :nb_volumes,
                     statut = :statut,
-                    image_couverture = :image_couverture,
-                    note_personnelle = :note_personnelle
+                    auteurs = :auteurs
                   WHERE
                     id = :id";
 
@@ -107,8 +103,7 @@ class Manga {
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->nb_volumes = htmlspecialchars(strip_tags($this->nb_volumes));
         $this->statut = htmlspecialchars(strip_tags($this->statut));
-        $this->image_couverture = htmlspecialchars(strip_tags($this->image_couverture));
-        $this->note_personnelle = htmlspecialchars(strip_tags($this->note_personnelle));
+        $this->auteurs = htmlspecialchars(strip_tags($this->auteurs));
 
         // Liaison des valeurs
         $stmt->bindParam(':id', $this->id);
@@ -116,8 +111,7 @@ class Manga {
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':nb_volumes', $this->nb_volumes);
         $stmt->bindParam(':statut', $this->statut);
-        $stmt->bindParam(':image_couverture', $this->image_couverture);
-        $stmt->bindParam(':note_personnelle', $this->note_personnelle);
+        $stmt->bindParam(':auteurs', $this->auteurs);
 
         // Exécution de la requête
         if ($stmt->execute()) {

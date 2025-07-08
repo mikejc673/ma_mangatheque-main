@@ -1,7 +1,7 @@
 <?php 
 // Pour inclure le contenu de show.php dans layout.php
 $viewPath = __DIR__ . '/show_content.php'; 
-ob_start(); // Commence la capture de sortie
+ // Commence la capture de sortie
 ?>
 
 <h2>Fiche détaillée : <?= htmlspecialchars($manga['titre']) ?></h2>
@@ -27,6 +27,6 @@ ob_start(); // Commence la capture de sortie
 <?php endif; ?>
 
 <?php 
-$viewContent = ob_get_clean(); // Récupère le contenu et vide le tampon
+ // Récupère le contenu et vide le tampon
 include __DIR__ . '/../layout.php'; // Inclut le layout avec le contenu
 ?>
