@@ -28,7 +28,7 @@ if (isset($_SESSION['success_message'])): ?>
                 <a href="<?= BASE_URL ?>mangas/show/<?= $manga['id'] ?>">
                     <?= htmlspecialchars($manga['titre']) ?>
                 </a>
-                (<?= htmlspecialchars($manga['statut']) ?>)
+                (<?= isset($manga['statut']) ? htmlspecialchars($manga['statut']) : 'N/A' ?>)
                 <span>
                     <a href="<?= BASE_URL ?>mangas/edit/<?= $manga['id'] ?>">Modifier</a>
                     <form action="<?= BASE_URL ?>mangas/delete/<?= $manga['id'] ?>" method="POST" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce manga ?');">

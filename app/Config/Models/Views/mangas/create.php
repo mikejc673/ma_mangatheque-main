@@ -13,6 +13,9 @@ $viewPath = __DIR__ . '/create.php';
     <label for="description">Description :</label><br>
     <textarea id="description" name="description"></textarea><br><br>
 
+      <label for="auteur">Auteur :</label><br>
+    <input type="text" id="auteur" name="auteur" required><br><br>
+
     <label for="nb_volumes">Nombre de volumes :</label><br>
     <input type="number" id="nb_volumes" name="nb_volumes" value="0"><br><br>
 
@@ -24,15 +27,10 @@ $viewPath = __DIR__ . '/create.php';
         <option value="Pause">En Pause</option>
     </select><br><br>
 
-    <label for="auteur">Auteur :</label><br>
-    <input type="text" id="auteur" name="auteur" required><br><br>
+  
 
     <button type="submit">Ajouter le Manga</button>
 </form>
 
 <p><a href="<?= BASE_URL ?>mangas">Retour à la liste des Mangas</a></p>
 
-<?php 
-// Récupère le contenu et vide le tampon
-include __DIR__ . '/../layout.php'; // Inclut le layout avec le contenu
-?>

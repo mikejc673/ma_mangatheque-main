@@ -6,11 +6,12 @@ class Manga {
 
     public $id;
     public $titre;
+    public $auteurs;
     public $description;
     public $nb_volumes;
     public $statut;
 
-    public $auteurs;
+
 
     public function __construct() {
         $database = Database::getInstance();

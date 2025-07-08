@@ -24,6 +24,9 @@ if (!$manga) {
     <label for="description">Description :</label><br>
     <textarea id="description" name="description"><?= htmlspecialchars($manga['description']) ?></textarea><br><br>
 
+    <label for="auteurs">Auteurs :</label><br>
+    <input type="text" id="auteurs" name="auteurs" value="<?= htmlspecialchars($manga['auteurs']) ?>"><br><br>
+
     <label for="nb_volumes">Nombre de volumes :</label><br>
     <input type="number" id="nb_volumes" name="nb_volumes" value="<?= htmlspecialchars($manga['nb_volumes']) ?>"><br><br>
 
@@ -35,11 +38,7 @@ if (!$manga) {
         <option value="Pause" <?= ($manga['statut'] == 'Pause') ? 'selected' : '' ?>>En Pause</option>
     </select><br><br>
 
-    <label for="image_couverture">URL de l'image de couverture :</label><br>
-    <input type="text" id="image_couverture" name="image_couverture" value="<?= htmlspecialchars($manga['image_couverture']) ?>"><br><br>
-
-    <label for="note_personnelle">Note personnelle (1-10) :</label><br>
-    <input type="number" id="note_personnelle" name="note_personnelle" min="1" max="10" value="<?= htmlspecialchars($manga['note_personnelle']) ?>"><br><br>
+    
 
     <button type="submit">Mettre à jour le Manga</button>
 </form>
