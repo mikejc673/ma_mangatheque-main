@@ -12,8 +12,9 @@ class MangaController {
         $stmt = $this->mangaModel->getAll();
         $mangas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Inclure la vue pour afficher la liste
-        include __DIR__ . '/../Views/mangas/index.php';
+        // Définir le chemin de la vue spécifique
+        $viewPath = __DIR__ . '/../Views/mangas/index.php';
+        include __DIR__ . '/../Views/layout.php';
     }
 
     public function show($id) {
@@ -27,7 +28,8 @@ class MangaController {
                 'image_couverture' => $this->mangaModel->image_couverture,
                 'note_personnelle' => $this->mangaModel->note_personnelle
             ];
-            include __DIR__ . '/../Views/mangas/show.php';
+            $viewPath = __DIR__ . '/../Views/mangas/show.php';
+            include __DIR__ . '/../Views/layout.php';
         } else {
             echo "Manga non trouvé."; // Vous pouvez rediriger vers une page 404
         }
@@ -35,7 +37,8 @@ class MangaController {
 
     public function create() {
         // Afficher le formulaire d'ajout
-        include __DIR__ . '/../Views/mangas/create.php';
+        $viewPath = __DIR__ . '/../Views/mangas/create.php';
+        include __DIR__ . '/../Views/layout.php';
     }
 
     public function store() {

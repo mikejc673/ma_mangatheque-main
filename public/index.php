@@ -20,6 +20,10 @@ $segments = explode('/', $requestUri);
 if (isset($segments[0]) && $segments[0] === 'ma_mangatheque-main') { // Adaptez ceci si votre projet n'est pas dans un sous-dossier
     array_shift($segments);
 }
+// On ignore aussi le segment 'index.php' si présent
+if (isset($segments[0]) && strtolower($segments[0]) === 'index.php') {
+    array_shift($segments);
+}
 
 $controllerName = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'MangaController'; // Par défaut, MangaController
 $actionName = !empty($segments[1]) ? $segments[1] : 'index'; // Par défaut, l'action index
