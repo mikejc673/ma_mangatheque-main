@@ -7,9 +7,9 @@
 require_once __DIR__ . '/../app/Config/config.php';
 
 // 2. Charger les autoloads des classes (on va le faire manuellement pour l'instant, puis on utilisera Composer)
-require_once __DIR__ . '/../app/Models/Database.php';
-require_once __DIR__ . '/../app/Models/Manga.php';
-require_once __DIR__ . '/../app/Controllers/MangaController.php';
+require_once __DIR__ . '/../app/Config/Models/Database.php';
+require_once __DIR__ . '/../app/Config/Models/Manga.php';
+require_once __DIR__ . '/../app/Config/Models/Controller/MangaController.php';
 
 // 3. Simple système de routage (à améliorer par la suite)
 // On va déterminer quelle action l'utilisateur veut faire en fonction de l'URL
@@ -17,7 +17,7 @@ $requestUri = trim($_SERVER['REQUEST_URI'], '/');
 $segments = explode('/', $requestUri);
 
 // On ignore le premier segment s'il s'agit du dossier racine (ex: /ma_mangatheque)
-if (isset($segments[0]) && $segments[0] === 'ma_mangatheque') { // Adaptez ceci si votre projet n'est pas dans un sous-dossier
+if (isset($segments[0]) && $segments[0] === 'ma_mangatheque-main') { // Adaptez ceci si votre projet n'est pas dans un sous-dossier
     array_shift($segments);
 }
 
