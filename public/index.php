@@ -1,5 +1,14 @@
 <?php
 
+session_start(); // Ajoutez cette ligne au tout début
+
+// Fichier d'entrée unique de l'application
+// C'est ici que toutes les requêtes seront traitées.
+
+// 1. Charger les fichiers de configuration
+require_once __DIR__ . '/../app/Config/config.php';
+
+// ... (le reste de votre fichier index.php)
 // Fichier d'entrée unique de l'application
 // C'est ici que toutes les requêtes seront traitées.
 
@@ -41,7 +50,7 @@ if ($controllerName === 'MangaController') {
     
     switch ($actionName) {
         case 'index':
-            $controller->index(); // GET /mangas
+            $controller->index();  // GET /mangas
             break;
         case 'create':
             $controller->create(); // GET /mangas/create

@@ -19,6 +19,11 @@
 
     <main>
         <?php include $viewPath; // Variable qui sera définie dans les contrôleurs pour inclure la vue spécifique ?>
+        <div id="message"></div>
+        <script>
+            // Exemple de message dynamique
+            document.getElementById('message').innerText = "Bienvenue dans votre Mangathèque !";
+        </script>
     </main>
 
     <footer>
