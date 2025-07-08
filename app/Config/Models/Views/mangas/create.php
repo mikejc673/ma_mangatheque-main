@@ -1,6 +1,6 @@
 <?php 
 // Pour inclure le contenu de create.php dans layout.php
-$viewPath = __DIR__ . '/create_content.php'; 
+$viewPath = __DIR__ . '/create.php'; 
 ob_start(); // Commence la capture de sortie
 ?>
 
