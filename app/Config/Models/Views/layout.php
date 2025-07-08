@@ -22,7 +22,7 @@
         <div id="message"></div>
         <script>
             // Exemple de message dynamique
-            document.getElementById('message').innerText = "Bienvenue dans votre Mangathèque !";
+            document.getElementById('message').innerText = "Bienvenue dans ma Mangathèque !";
         </script>
     </main>
 

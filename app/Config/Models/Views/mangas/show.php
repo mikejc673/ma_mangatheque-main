@@ -23,7 +23,3 @@ $viewPath = __DIR__ . '/show_content.php';
     <p>Manga non trouvé.</p>
 <?php endif; ?>
 
-<?php 
- // Récupère le contenu et vide le tampon
-include __DIR__ . '/../layout.php'; // Inclut le layout avec le contenu
-?>

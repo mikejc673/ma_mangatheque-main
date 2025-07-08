@@ -40,7 +40,3 @@ if (isset($_SESSION['success_message'])): ?>
     </ul>
 <?php endif; ?>
 
-<?php
-$viewContent = ob_get_clean(); // Récupère le contenu et vide le tampon
-include __DIR__ . '/../layout.php'; // Inclut le layout avec le contenu
-?>
