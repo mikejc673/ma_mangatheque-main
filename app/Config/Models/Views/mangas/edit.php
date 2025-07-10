@@ -1,15 +1,12 @@
 <?php
-// Pour inclure le contenu de edit.php dans layout.php
-$viewPath = __DIR__ . '/edit.php';
-// Commence la capture de sortie
 
-// Inclure le modèle Manga
+$viewPath = __DIR__ . '/edit.php';
 require_once __DIR__ . '/../../Models/Manga.php';
 
 $mangaModel = new Manga();
 $manga = $mangaModel->getById($id);
 if (!$manga) {
-    // Si le manga n'existe pas, rediriger ou afficher un message d'erreur
+   
     echo "Manga non trouvé.";
     exit;
 }

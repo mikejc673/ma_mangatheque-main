@@ -8,17 +8,17 @@ class MangaController {
     }
 
     public function index() {
-        // Récupérer tous les mangas depuis le modèle
+       
         $stmt = $this->mangaModel->getAll();
         $mangas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Définir le chemin de la vue spécifique pour le layout
+     
         $viewPath = __DIR__ . '/../Views/mangas/index.php';
-        // Utiliser ob_start/ob_get_clean pour capturer le contenu de la vue avant d'inclure le layout
+       
         ob_start();
-        include $viewPath; // La vue réelle qui génère le contenu
+        include $viewPath; 
         $viewContent = ob_get_clean();
-        include __DIR__ . '/../Views/layout.php'; // Inclure le layout qui affichera $viewContent
+        include __DIR__ . '/../Views/layout.php'; 
     }
 
     public function show($id) {
@@ -93,7 +93,7 @@ class MangaController {
     }
 
     public function edit($id) {
-        // Récupérer le manga par ID
+       
         if ($this->mangaModel->getById($id)) {
             $manga = [
                 'id' => $this->mangaModel->id,
